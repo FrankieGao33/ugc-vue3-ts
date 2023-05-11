@@ -1,4 +1,3 @@
 # ugc-vue3-ts
-ugc-mp
-#Build the project
-npm install
+Build the project: 
+$ npm install
