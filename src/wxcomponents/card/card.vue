@@ -3,7 +3,7 @@
 	  <view class="title">{{testA}}</view>
     </view>
 	<view>
-		<van-icon name="chat-o" />
+		<uni-icons type="location-filled" size="30"></uni-icons>
 	</view>
 </template>
 

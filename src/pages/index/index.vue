@@ -1,9 +1,12 @@
 <template>
   <view class="content">
     <image class="logo" src="/static/logo.png" />
-    <view class="text-area" id="indx" ref="indx">
+    <view class="text-area" ref="indx">
       <text class="title">{{ title }}</text>
     </view>
+	<view class="text-area" >
+	  <text class="title">{{ hostName }}</text>
+	</view>
 	<view>
 		<Card></Card>
 	</view>
@@ -30,9 +33,8 @@
 	import {getOrderList} from '../../api/orderList'
 	import {getAddressList} from '../../api/addressList'
 	import {getProductList} from '../../api/productList'
-	import { createStore, Store } from 'vuex'
 	
-	const title = ref('Hello Frankies liu xiao na123')
+	const title = ref('Hello World 123456789')
 	async function getOrders() {
 		await getOrderList().then((resp)=> {
 			let result = resp;

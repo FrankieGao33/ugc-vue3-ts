@@ -11,5 +11,4 @@ onHide(() => {
 });
 </script>
 <style>
-	@import "wxcomponents/vant/weapp/common/index.wxss";
 </style>
