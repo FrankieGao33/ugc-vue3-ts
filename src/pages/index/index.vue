@@ -22,6 +22,9 @@
 	<view>
 		<button @click="getProduct()">getProductList</button>
 	</view>
+	<view>
+		<button @click="addOrders()">Add the Order</button>
+	</view>
 	
   </view>
 </template>
@@ -30,11 +33,12 @@
 	import { ref } from 'vue'
 	import Card from '../../wxcomponents/card/card.vue'
 	import Countdown from '../../wxcomponents/countdown/countdown.vue'
-	import {getOrderList} from '../../api/orderList'
+	import {getOrderList, addOrder} from '../../api/orderList'
 	import {getAddressList} from '../../api/addressList'
 	import {getProductList} from '../../api/productList'
 	
 	const title = ref('Hello World 123456789')
+	const hostName = ref('Host Server')
 	async function getOrders() {
 		await getOrderList().then((resp)=> {
 			let result = resp;
@@ -52,7 +56,36 @@
 		});
 	}
 	async function getProduct() {
-		await getProductList().then((resp)=> {
+		const id:string = 't7i42d64owerxitke5qnlv500jhq4zc2';
+		await getProductList(id).then((resp)=> {
+			let result = resp;
+			console.log(result.result);
+		}, (error)=> {
+		  //error msg
+		});
+	}
+	async function addOrders() {
+		const reqData: object = {
+			"openId":"oMewN5AncNberyE8o6EMa2azs_Iw",
+			"orderNumber":8068658798,
+			"PONumber":"Q-2281",
+			"deliveryAddress":"中国四川成都市金牛区金府路669号20栋2层1号",
+			"discount":"20%",
+			"merchDetail":[{"id":"size_jdjzot38wxzmixjkqla6e65ekt10jovm",
+			"carrier":"拼多多","deliverCount":0,
+			"merchCategory":"控制器",
+			"merchName":"御礼创意桌面摆件学生台灯卧室床头灯星空投影灯儿童生日礼物女孩男孩",
+			"noDeliverCount":1,
+			"orderCount":1,
+			"predictDate":"2023-05-12",
+			"waybillNumber":679763751944,
+			"merchStatus":"待处理"}],
+			"orderCompany":"成都恒昕源节能科技有限公司",
+			"orderCount":1,
+			"orderDate":"2023-05-12",
+			"totalPrice":49.88
+		}
+		await addOrder(reqData).then((resp)=> {
 			let result = resp;
 			console.log(result.result);
 		}, (error)=> {

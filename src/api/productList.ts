@@ -1,11 +1,13 @@
-export const getProductList = () => {
+export const getProductList = (id:string) => {
 	let callProduct;
 	wx.cloud.init();
 	callProduct = wx.cloud.callFunction({
-		name: 'getCloudFun',
+		name: 'getDocCloudFun',
 		data: {
-			cloudName: 'productList',
-			_id: 't7i42d64owerxitke5qnlv500jhq4zc2'
+			url: 'productList',
+			params: {
+				_id: id
+			}
 		}
 	})
   return callProduct;

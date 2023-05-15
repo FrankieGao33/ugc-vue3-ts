@@ -7,7 +7,9 @@ cloud.init({ env: 'ugc-2g2150rl47388aea' }) // 使用当前云环境
 exports.main = async (event, context) => {
 	const db = cloud.database();
 	const {url, params} = event;
-	const result = await db.collection(url).get();
+	const result = await db.collection(url).add({
+			data: params,
+		});
 	
 	return result.data;
 }

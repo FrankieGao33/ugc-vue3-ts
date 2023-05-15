@@ -4,7 +4,7 @@ export const getAddressList = () => {
 	callProduct = wx.cloud.callFunction({
 		name: 'getCloudFun',
 		data: {
-			cloudName: 'addressList'
+			url: 'addressList'
 		}
 	})
   return callProduct;
