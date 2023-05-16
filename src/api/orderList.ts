@@ -1,10 +1,14 @@
-export const getOrderList = () => {
+export const getOrderList = (id: string) => {
 	let callProduct;
 	wx.cloud.init();
 	callProduct = wx.cloud.callFunction({
-		name: 'getCloudFun',
+		name: "cloudRequest",
 		data: {
-			url: 'orderList'
+			dataBase: "orderList",
+			method: "getDocCloudFun",
+			params: {
+				_id: id
+			}
 		}
 	})
   return callProduct;
@@ -13,9 +17,10 @@ export const addOrder = (reqData: object) => {
 	let callProduct;
 	wx.cloud.init();
 	callProduct = wx.cloud.callFunction({
-		name: 'addCloudFun',
+		name: "cloudRequest",
 		data: {
-			url: 'orderList',
+			dataBase: "orderList",
+			method: "addCloudFun",
 			params: reqData
 		}
 	})
