@@ -17,6 +17,9 @@
 		<button @click="getOrders()">getOrder</button>
 	</view>
 	<view>
+		<button @click="getOrderId()">get One order</button>
+	</view>
+	<view>
 		<button @click="addOrders()">Add the Order</button>
 	</view>
 	
@@ -27,12 +30,20 @@
 	import { ref } from 'vue'
 	import Card from '../../wxcomponents/card/card.vue'
 	import Countdown from '../../wxcomponents/countdown/countdown.vue'
-	import {getOrderList, addOrder} from '../../api/orderList'
+	import {getOrderList, addOrder, getOneOrder} from '../../api/orderList'
 	
 	const title = ref('Hello World 123456789')
 	const hostName = ref('Host Server')
+	async function getOrderId() {
+		await getOneOrder("ffe217c66461aa580007892158fadc0f").then((resp)=> {
+			let result = resp;
+			console.log(result.result);
+		}, (error)=> {
+		  //error msg
+		});
+	}
 	async function getOrders() {
-		await getOrderList("ffe217c66461aa580007892158fadc0f").then((resp)=> {
+		await getOrderList().then((resp)=> {
 			let result = resp;
 			console.log(result.result);
 		}, (error)=> {
