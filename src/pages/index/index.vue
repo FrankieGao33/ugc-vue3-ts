@@ -17,12 +17,6 @@
 		<button @click="getOrders()">getOrder</button>
 	</view>
 	<view>
-		<button @click="getAddress()">getAddress</button>
-	</view>
-	<view>
-		<button @click="getProduct()">getProductList</button>
-	</view>
-	<view>
 		<button @click="addOrders()">Add the Order</button>
 	</view>
 	
@@ -34,30 +28,11 @@
 	import Card from '../../wxcomponents/card/card.vue'
 	import Countdown from '../../wxcomponents/countdown/countdown.vue'
 	import {getOrderList, addOrder} from '../../api/orderList'
-	import {getAddressList} from '../../api/addressList'
-	import {getProductList} from '../../api/productList'
 	
 	const title = ref('Hello World 123456789')
 	const hostName = ref('Host Server')
 	async function getOrders() {
 		await getOrderList().then((resp)=> {
-			let result = resp;
-			console.log(result.result);
-		}, (error)=> {
-		  //error msg
-		});
-	}
-	async function getAddress() {
-		await getAddressList().then((resp)=> {
-			let result = resp;
-			console.log(result.result);
-		}, (error)=> {
-		  //error msg
-		});
-	}
-	async function getProduct() {
-		const id:string = 't7i42d64owerxitke5qnlv500jhq4zc2';
-		await getProductList(id).then((resp)=> {
 			let result = resp;
 			console.log(result.result);
 		}, (error)=> {
@@ -117,12 +92,13 @@ $myColor: red;
 .text-area {
   // display: flex;
   // justify-content: center;
-  @include flex-direction-align() //在scss中使用@mixin定义方法，用@include调用
+  @include flex-direction-align(); //在scss中使用@mixin定义方法，用@include调用
+  .title {
+    font-size: 36rpx;
+    color: $myColor; // 可以在当前文件中声明scss变量并使用
+    opacity: $uni-opacity-disabled; // 可以直接使用uni.scss中的已经声明的全局scss变量
+  }
 }
 
-.title {
-  font-size: 36rpx;
-  color: $myColor; // 可以在当前文件中声明scss变量并使用
-  opacity: $uni-opacity-disabled; // 可以直接使用uni.scss中的已经声明的全局scss变量
-}
+
 </style>
