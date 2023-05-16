@@ -94,7 +94,10 @@
 	}
 </script>
 
-<style>
+// 给style标签添加lang="scss"属性就可以使用sass
+<style lang="scss">
+@import '../../common/style/mixin.scss';
+$myColor: red;
 .content {
   display: flex;
   flex-direction: column;
@@ -112,12 +115,14 @@
 }
 
 .text-area {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
+  @include flex-direction-align() //在scss中使用@mixin定义方法，用@include调用
 }
 
 .title {
   font-size: 36rpx;
-  color: #8f8f94;
+  color: $myColor; // 可以在当前文件中声明scss变量并使用
+  opacity: $uni-opacity-disabled; // 可以直接使用uni.scss中的已经声明的全局scss变量
 }
 </style>
