@@ -1,23 +1,23 @@
 import {callFunction} from './wxCloudCall'
 
-export const getOrderList = () => {
+const getOrderList = () => {
 	const requestData:object = {
 		collection: "orderList",
 		method: "getCloudFun"
 	};
 	return callFunction(requestData);
 }
-export const getOneOrder = (id: string | number) => {
+const getOneOrder = (id: string | number) => {
 	const requestData:object = {
 		collection: "orderList",
-		method: "getDocCloudFun",
+		method: "getIdCloudFun",
 		params: {
 			_id: id
 		}
 	};
 	return callFunction(requestData);
 }
-export const addOrder = (reqData: object) => {
+const addOrder = (reqData: object) => {
 	const requestData:object = {
 		collection: "orderList",
 		method: "addCloudFun",
@@ -25,7 +25,25 @@ export const addOrder = (reqData: object) => {
 	};
 	return callFunction(requestData);
 }
-export const getAggregateInfo = () => {
+const deleteOrderById = (id: string | number) => {
+	const requestData:object = {
+		collection: "orderList",
+		method: "deleteIdCloudFun",
+		params: {
+			_id: id
+		}
+	};
+	return callFunction(requestData);
+}
+const deleteOrderByParams = (reqData: object) => {
+	const requestData:object = {
+		collection: "orderList",
+		method: "deleteParamsCloudFun",
+		params: reqData
+	};
+	return callFunction(requestData);
+}
+const getAggregateInfo = () => {
 	const requestData:object = {
 		collection: "orderList",
 		aggregateBase: "bookList",
@@ -46,4 +64,13 @@ const throwError = (errCode = 400, errMsg = "服务器错误") => {
     err.errCode = errCode;
     err.errMsg = errMsg;
     throw err;
+}
+
+export default {
+	getOrderList,
+	getAggregateInfo,
+	getOneOrder,
+	addOrder,
+	deleteOrderById,
+	deleteOrderByParams,
 }

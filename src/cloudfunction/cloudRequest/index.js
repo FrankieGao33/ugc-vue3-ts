@@ -1,9 +1,4 @@
-const {addCloudFun, 
-	getCloudFun, 
-	getDocCloudFun, 
-	getParamsCloudFun, 
-	aggregateCloudFun
-	} = require('./cloudFun/index');
+const cloudMethod = require('./cloudFun/index');
 
 
 // 云函数入口函数
@@ -22,15 +17,19 @@ const handleCloudFun = async (event, context) => {
     // seperate the request methods
     switch (event.method) {
         case "getCloudFun":
-			return await getCloudFun(event, context);
+			return await cloudMethod.getCloudFun(event, context);
         case "addCloudFun":
-			return await addCloudFun(event, context);
-		case "getDocCloudFun":
-			return await getDocCloudFun(event, context);
+			return await cloudMethod.addCloudFun(event, context);
+		case "deleteIdCloudFun":
+			return await cloudMethod.deleteIdCloudFun(event, context);
+		case "deleteParamsCloudFun":
+			return await cloudMethod.deleteParamsCloudFun(event, context);
+		case "getIdCloudFun":
+			return await cloudMethod.getIdCloudFun(event, context);
 		case "getParamsCloudFun":
-			return await getParamsCloudFun(event, context);
+			return await cloudMethod.getParamsCloudFun(event, context);
 		case "aggregateCloudFun":
-			return await aggregateCloudFun(event, context);
+			return await cloudMethod.aggregateCloudFun(event, context);
         default:
             return throwError(405, "请求Method错误");
     }

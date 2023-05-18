@@ -17,6 +17,20 @@ const addCloudFun = async(event, context) => {
 	return result;
 };
 
+//删除函数，传递_id
+const deleteIdCloudFun = async(event, context) => {
+	const {collection, params} = event;
+	const result =  await commonReq(collection).doc(params._id).remove();
+	return result;
+};
+
+//删除函数，传递删除相关参数params
+const deleteParamsCloudFun = async(event, context) => {
+	const {collection, params} = event;
+	const result =  await commonReq(collection).where(params).remove();
+	return result;
+};
+
 //查询函数，获取集合中所有数据
 const getCloudFun = async(event, context) => {
 	const {collection} = event;
@@ -25,7 +39,7 @@ const getCloudFun = async(event, context) => {
 };
 
 //查询函数，通过传_id,获取对应数据
-const getDocCloudFun = async(event, context) => {
+const getIdCloudFun = async(event, context) => {
 	const {collection, params} = event;
 	const result = await commonReq(collection).doc(params._id).get();
 	return result;
@@ -53,8 +67,10 @@ const aggregateCloudFun = async (event, context) => {
 
 module.exports = {
 	addCloudFun,
+	deleteIdCloudFun,
+	deleteParamsCloudFun,
 	getCloudFun,
-	getDocCloudFun,
+	getIdCloudFun,
 	getParamsCloudFun,
 	aggregateCloudFun
 }

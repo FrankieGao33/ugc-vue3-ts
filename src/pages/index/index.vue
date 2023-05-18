@@ -28,7 +28,12 @@
 	<view>
 		<button @click="addOrders()">Add the Order</button>
 	</view>
-	
+	<view>
+		<button @click="deleteOrderWithId()">delete the Order by Id</button>
+	</view>
+	<view>
+		<button @click="deleteWithParams()">delete the Order with params</button>
+	</view>
   </view>
 </template>
 
@@ -36,14 +41,14 @@
 	import { ref } from 'vue'
 	import Card from '@/components/card/card.vue'
 	import Countdown from '@/components/countdown/countdown.vue'
-	import {getOrderList, addOrder, getOneOrder, getAggregateInfo} from '../../api/orderList'
+	import orderServer from '../../api/orderList'
 	
 	
 	const title = ref('Hello World 123456789')
 	const hostName = ref('Host Server');
 	const orderInfo = ref<string>();
 	async function getOrderId() {
-		await getOneOrder("4f9a71986465e0ac0018963919a391ff").then((resp)=> {
+		await orderServer.getOneOrder("91949ee16465ee91000468d831bcfb00").then((resp)=> {
 			let result =  resp.result;
 			console.log(result);
 			orderInfo.value = result?.data?.address;
@@ -52,7 +57,7 @@
 		});
 	}
 	async function getOrders() {
-		await getOrderList().then((resp)=> {
+		await orderServer.getOrderList().then((resp)=> {
 			let result = resp.result;
 			console.log(result);
 		}, (error)=> {
@@ -60,7 +65,7 @@
 		});
 	}
 	async function getAggregate() {
-		await getAggregateInfo().then((resp)=> {
+		await orderServer.getAggregateInfo().then((resp)=> {
 			let result = resp.result;
 			console.log(result);
 		}, (error)=> {
@@ -74,8 +79,24 @@
 			"quantity":1, 
 			"address": "中国四川成都市金牛区金府路669号20栋2层1号",
 		};
-		await addOrder(reqData).then((resp)=> {
+		await orderServer.addOrder(reqData).then((resp)=> {
 			let result = resp;
+			console.log(result);
+		}, (error)=> {
+		  //error msg
+		});
+	}
+	async function deleteOrderWithId() {
+		await orderServer.deleteOrderById("91949ee16465ed390003ff6613139bcb").then((resp)=> {
+			let result =  resp.result;
+			console.log(result);
+		}, (error)=> {
+		  //error msg
+		});
+	}
+	async function deleteWithParams() {
+		await orderServer.deleteOrderByParams({address: "中国四川成都市金牛区金府路669号20栋2层1号"}).then((resp)=> {
+			let result =  resp.result;
 			console.log(result);
 		}, (error)=> {
 		  //error msg
