@@ -1,7 +1,10 @@
-const {addCloudFun} = require('./addCloudFun/index');
-const {getCloudFun} = require('./getCloudFun/index');
-const {getDocCloudFun} = require('./getDocCloudFun/index');
-const {getParamsCloudFun} = require('./getParamsCloudFun/index');
+const {addCloudFun, 
+	getCloudFun, 
+	getDocCloudFun, 
+	getParamsCloudFun, 
+	aggregateCloudFun
+	} = require('./cloudFun/index');
+
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -26,6 +29,8 @@ const handleCloudFun = async (event, context) => {
 			return await getDocCloudFun(event, context);
 		case "getParamsCloudFun":
 			return await getParamsCloudFun(event, context);
+		case "aggregateCloudFun":
+			return await aggregateCloudFun(event, context);
         default:
             return throwError(405, "请求Method错误");
     }

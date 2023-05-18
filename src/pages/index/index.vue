@@ -7,6 +7,9 @@
 	<view class="text-area" >
 	  <text class="title">{{ hostName }}</text>
 	</view>
+	<view class="text-area">
+		<text class="title">{{orderInfo}}</text>
+	</view>
 	<view>
 		<Card></Card>
 	</view>
@@ -20,6 +23,9 @@
 		<button @click="getOrderId()">get One order</button>
 	</view>
 	<view>
+		<button @click="getAggregate()">get Aggregate Info</button>
+	</view>
+	<view>
 		<button @click="addOrders()">Add the Order</button>
 	</view>
 	
@@ -28,52 +34,49 @@
 
 <script setup lang="ts">
 	import { ref } from 'vue'
-	import Card from '../../wxcomponents/card/card.vue'
-	import Countdown from '../../wxcomponents/countdown/countdown.vue'
-	import {getOrderList, addOrder, getOneOrder} from '../../api/orderList'
+	import Card from '@/components/card/card.vue'
+	import Countdown from '@/components/countdown/countdown.vue'
+	import {getOrderList, addOrder, getOneOrder, getAggregateInfo} from '../../api/orderList'
+	
 	
 	const title = ref('Hello World 123456789')
-	const hostName = ref('Host Server')
+	const hostName = ref('Host Server');
+	const orderInfo = ref<string>();
 	async function getOrderId() {
-		await getOneOrder("ffe217c66461aa580007892158fadc0f").then((resp)=> {
-			let result = resp;
-			console.log(result.result);
+		await getOneOrder("4f9a71986465e0ac0018963919a391ff").then((resp)=> {
+			let result =  resp.result;
+			console.log(result);
+			orderInfo.value = result?.data?.address;
 		}, (error)=> {
 		  //error msg
 		});
 	}
 	async function getOrders() {
 		await getOrderList().then((resp)=> {
-			let result = resp;
-			console.log(result.result);
+			let result = resp.result;
+			console.log(result);
+		}, (error)=> {
+		  //error msg
+		});
+	}
+	async function getAggregate() {
+		await getAggregateInfo().then((resp)=> {
+			let result = resp.result;
+			console.log(result);
 		}, (error)=> {
 		  //error msg
 		});
 	}
 	async function addOrders() {
 		const reqData: object = {
-			"openId":"oMewN5AncNberyE8o6EMa2azs_Iw",
-			"orderNumber":8068658798,
-			"PONumber":"Q-2281",
-			"deliveryAddress":"中国四川成都市金牛区金府路669号20栋2层1号",
-			"discount":"20%",
-			"merchDetail":[{"id":"size_jdjzot38wxzmixjkqla6e65ekt10jovm",
-			"carrier":"拼多多","deliverCount":0,
-			"merchCategory":"控制器",
-			"merchName":"御礼创意桌面摆件学生台灯卧室床头灯星空投影灯儿童生日礼物女孩男孩",
-			"noDeliverCount":1,
-			"orderCount":1,
-			"predictDate":"2023-05-12",
-			"waybillNumber":679763751944,
-			"merchStatus":"待处理"}],
-			"orderCompany":"成都恒昕源节能科技有限公司",
-			"orderCount":1,
-			"orderDate":"2023-05-12",
-			"totalPrice":49.88
-		}
+			"book":"science 1",
+			"price":20,
+			"quantity":1, 
+			"address": "中国四川成都市金牛区金府路669号20栋2层1号",
+		};
 		await addOrder(reqData).then((resp)=> {
 			let result = resp;
-			console.log(result.result);
+			console.log(result);
 		}, (error)=> {
 		  //error msg
 		});

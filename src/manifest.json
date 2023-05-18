@@ -1,6 +1,6 @@
 {
-    "name" : "",
-    "appid" : "",
+    "name" : "UGC",
+    "appid" : "__UNI__A26B131",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -52,10 +52,15 @@
     "mp-weixin" : {
         "appid" : "wx3e16caff77119cc0",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "es6" : false
         },
         "usingComponents" : true,
-		"cloudfunctionRoot": "cloudfunction/"
+        "cloudfunctionRoot" : "cloudfunction/",
+        "permission" : {},
+        "uniStatistics" : {
+            "enable" : true
+        }
     },
     "mp-alipay" : {
         "usingComponents" : true
@@ -66,8 +71,8 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics": {  
-        "enable": false
+    "uniStatistics" : {
+        "enable" : false
     },
     "vueVersion" : "3"
 }

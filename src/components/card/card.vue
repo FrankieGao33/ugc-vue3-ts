@@ -1,6 +1,6 @@
 <template>
     <view class="text-area">
-	  <view class="title">{{testA}}</view>
+	  <view class="title">{{ testA }}</view>
     </view>
 	<view>
 		<uni-icons type="location-filled" size="30"></uni-icons>
@@ -9,9 +9,7 @@
 
 <script setup lang="ts">
 	import { ref } from 'vue'
-	let a:string;
-	a = "This is a test cardcomponents data.";
-const testA = ref(a);
+	const testA = ref("This is a test cardcomponents data.");
 </script>
 
 <style>
