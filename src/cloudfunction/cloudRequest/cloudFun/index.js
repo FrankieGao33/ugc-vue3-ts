@@ -8,7 +8,7 @@ const commonReq = (collection) => {
 	return db.collection(collection);
 };
 
-//添加函数，传递添加相关参数params
+//添加函数，传递添加相关数据params
 const addCloudFun = async(event, context) => {
 	const {collection, params} = event;
 	const result =  await commonReq(collection).add({
@@ -17,7 +17,7 @@ const addCloudFun = async(event, context) => {
 	return result;
 };
 
-//删除函数，传递_id
+//删除函数，传递_id，删除对应数据
 const deleteIdCloudFun = async(event, context) => {
 	const {collection, params} = event;
 	const result =  await commonReq(collection).doc(params._id).remove();
@@ -38,7 +38,14 @@ const getCloudFun = async(event, context) => {
 	return result;
 };
 
-//查询函数，通过传_id,获取对应数据
+//更新数据函数，通过传递查询数据searchData和需要更新数据updateData，更新对应数据
+const updateCloudFun = async(event, context) => {
+	const {collection, searchData, updateData} = event;
+	const result = await commonReq(collection).where(searchData).update(updateData);
+	return result;
+};
+
+//查询函数，通过传递_id,获取对应数据
 const getIdCloudFun = async(event, context) => {
 	const {collection, params} = event;
 	const result = await commonReq(collection).doc(params._id).get();
@@ -72,5 +79,6 @@ module.exports = {
 	getCloudFun,
 	getIdCloudFun,
 	getParamsCloudFun,
-	aggregateCloudFun
+	aggregateCloudFun,
+	updateCloudFun
 }

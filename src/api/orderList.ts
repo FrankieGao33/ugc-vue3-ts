@@ -58,6 +58,16 @@ const getAggregateInfo = () => {
 	// return callFunction(requestData);
 }
 
+const updateOrder = (searchData:object, updateData:object) => {
+	const requestData:object = {
+		collection: "orderList",
+		method: "updateCloudFun",
+		searchData: searchData,
+		updateData: updateData
+	};
+	return callFunction(requestData);
+}
+
 const throwError = (errCode = 400, errMsg = "服务器错误") => {
     const err: object = new Error(errMsg);
     err.success = false;
@@ -73,4 +83,5 @@ export default {
 	addOrder,
 	deleteOrderById,
 	deleteOrderByParams,
+	updateOrder
 }

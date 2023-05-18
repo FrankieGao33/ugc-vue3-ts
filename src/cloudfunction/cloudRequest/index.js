@@ -30,6 +30,8 @@ const handleCloudFun = async (event, context) => {
 			return await cloudMethod.getParamsCloudFun(event, context);
 		case "aggregateCloudFun":
 			return await cloudMethod.aggregateCloudFun(event, context);
+		case "updateCloudFun":
+			return await cloudMethod.updateCloudFun(event, context);
         default:
             return throwError(405, "请求Method错误");
     }

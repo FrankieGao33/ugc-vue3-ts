@@ -34,6 +34,9 @@
 	<view>
 		<button @click="deleteWithParams()">delete the Order with params</button>
 	</view>
+	<view>
+		<button @click="updateOrderInfo()">Update the Order Info</button>
+	</view>
   </view>
 </template>
 
@@ -102,6 +105,22 @@
 		  //error msg
 		});
 	}
+	async function updateOrderInfo() {
+		const searchData: object = {
+			"_id":"a208483c6465ee930010e0655fa4003e",
+		};
+		const updateData: object = {
+			data : {
+				"address": "中国四川成都市金牛区金府路222号22栋2层2号"
+			}
+		};
+		await orderServer.updateOrder(searchData, updateData).then((resp)=> {
+			let result = resp;
+			console.log(result);
+		}, (error)=> {
+		  //error msg
+		});
+	}
 </script>
 
 // 给style标签添加lang="scss"属性就可以使用sass
@@ -116,12 +135,16 @@ $myColor: red;
 }
 
 .logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
+  height: 50rpx;
+  width: 50rpx;
+  margin-top: 80rpx;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50rpx;
+  margin-bottom: 30rpx;
+}
+button {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .text-area {
