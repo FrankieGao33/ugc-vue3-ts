@@ -1,4 +1,4 @@
-import {callFunction} from './wxCloudCall'
+import {callFunction} from './uniCloudCall'
 
 const getOrderList = () => {
 	const requestData:object = {

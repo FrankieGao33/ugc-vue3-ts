@@ -1,6 +1,5 @@
 export const callFunction = (requestData: object) => {
-  wx.cloud.init()
-  return wx.cloud.callFunction({
+  return uniCloud.callFunction({
     name: 'cloudRequest',
     data: requestData,
   })

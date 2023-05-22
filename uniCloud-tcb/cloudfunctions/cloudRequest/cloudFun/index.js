@@ -1,19 +1,12 @@
-// 云函数入口文件
-const cloud = require('wx-server-sdk')
-
-cloud.init({ env: 'ugc-2g2150rl47388aea' })
-
 const commonReq = (collection) => {
-	const db = cloud.database();
+	const db = uniCloud.database();
 	return db.collection(collection);
 };
 
 //添加函数，传递添加相关数据params
 const addCloudFun = async(event, context) => {
 	const {collection, params} = event;
-	const result =  await commonReq(collection).add({
-			data: params,
-		});
+	const result =  await commonReq(collection).add(params);
 	return result;
 };
 

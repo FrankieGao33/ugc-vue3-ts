@@ -1,0 +1,7 @@
+{
+  "name": "cloudRequest",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
