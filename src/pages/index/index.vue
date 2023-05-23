@@ -54,9 +54,9 @@
 		await orderServer.getOneOrder("91949ee16465ee91000468d831bcfb00").then((resp)=> {
 			let result =  resp.result;
 			console.log(result);
-			orderInfo.value = result?.data?.address;
+			orderInfo.value = result?.data[0].address;
 		}, (error)=> {
-		  //error msg
+		  //error msg 
 		});
 	}
 	async function getOrders() {
