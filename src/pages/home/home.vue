@@ -26,11 +26,11 @@
 </template>
 
 <script setup lang="ts">
-	import videoPlay from '@/components/swiper/videoPlay.vue'
-	import swiperFrame from '@/components/swiper/swiperFrame.vue'
-	import carouselImage from '@/components/swiper/carouselImage.vue'
-	import contentDescription from '@/components/swiper/contentDescription.vue'
-	import contentIconGroup from '@/components/swiper/contentIconGroup.vue'
+	import videoPlay from '@/components/home/videoPlay.vue'
+	import swiperFrame from '@/components/home/swiperFrame.vue'
+	import carouselImage from '@/components/home/carouselImage.vue'
+	import contentDescription from '@/components/home/contentDescription.vue'
+	import contentIconGroup from '@/components/home/contentIconGroup.vue'
 	import { IContentInfo } from '../../common/interface'
 	import { OperationType } from '../../common/emun'
 	import { ref } from 'vue'

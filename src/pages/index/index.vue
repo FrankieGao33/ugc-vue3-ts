@@ -28,6 +28,7 @@
 	<view>
 		<button @click="addOrders()">Add the Order</button>
 	</view>
+
 	<view>
 		<button @click="deleteOrderWithId()">delete the Order by Id</button>
 	</view>
@@ -37,15 +38,26 @@
 	<view>
 		<button @click="updateOrderInfo()">Update the Order Info</button>
 	</view>
+	
+	<view>
+		<button @click="test()">test for vuex</button>
+	</view>
+
   </view>
 </template>
 
 <script setup lang="ts">
 	import { ref } from 'vue'
+
 	import Card from '@/components/card/card.vue'
 	import Countdown from '@/components/countdown/countdown.vue'
 	import orderServer from '../../api/orderList'
 	
+	// import Card from '../../wxcomponents/card/card.vue'
+	// import Countdown from '../../wxcomponents/countdown/countdown.vue'
+	// import {getOrderList, addOrder, getOneOrder} from '../../api/orderList'
+	import {store, key} from '../../store'
+
 	
 	const title = ref('Hello World 123456789')
 	const hostName = ref('Host Server');
@@ -120,6 +132,13 @@
 		}, (error)=> {
 		  //error msg
 		});
+	}
+	
+	async function test() {
+		console.log("test for vuex");
+		store.commit('setCount1')
+		store.commit('setCount2')
+		store.dispatch('setAsyncCount1',"setAsyncCount1")
 	}
 </script>
 

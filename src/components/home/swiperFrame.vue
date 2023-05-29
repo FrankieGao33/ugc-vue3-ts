@@ -1,5 +1,5 @@
 <template>
-  <swiper class="swiper" autoplay="false" vertical="true" interval="990000" @change="changeContent">
+  <swiper class="swiper" autoplay="false" vertical="true" interval="9990000" @change="changeContent">
   		<swiper-item class="swiper-item" v-for="(item,index) in contentList" :key="item.id">
   				<slot v-if="item.type === 'video'" name="video" :videoInfo="item"></slot>
   				<slot v-else name="image" :imageInfo="item"></slot>
