@@ -17,6 +17,7 @@
 					:likeCount="iconGroupProps.contentInfo.likeCount"
 					:commentCount="iconGroupProps.contentInfo.commentCount"
 					:favoriteCount="iconGroupProps.contentInfo.favoriteCount"
+					:isMine="iconGroupProps.contentInfo.isMine"
 					@click-icon="onIconGroupClick"
 				/>
 			</template>
@@ -47,6 +48,7 @@
 						likeCount: 12945,
 						commentCount: 583,
 						favoriteCount: 5294,
+						isMine: true,
 						description: "这是一组图片, 一组轮播图片，总共有3张图片😄"
 					},
 					{
@@ -58,6 +60,7 @@
 						commentCount: 102,
 						favoriteCount: 10,
 						videoUrl: 'https://www.runoob.com/try/demo_source/movie.mp4',
+						isMine: false,
 						description: "这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频"
 					},	
 					{
@@ -69,6 +72,7 @@
 						commentCount: 1,
 						favoriteCount: 0,
 						videoUrl: 'https://web-assets.dcloud.net.cn/unidoc/zh/wap2appvsnative.mp4',
+						isMine: true,
 						description: "这是一个视频，网络上的找的视频🫡😝"
 					},
 					{
@@ -80,6 +84,7 @@
 						commentCount: 592,
 						favoriteCount: 193,
 						videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+						isMine: true,
 						description: "这是一个视频，网络上的找的视频🫡😝"
 					},
 					{
@@ -95,6 +100,7 @@
 							`https://picsum.photos/seed/${Math.random()}/500/800`,
 							`https://picsum.photos/seed/${Math.random()}/500/800`
 						],
+						isMine: false,
 						description: "这是一组图片, 一组轮播图片，总共有3张图片😄"
 					},
 		]

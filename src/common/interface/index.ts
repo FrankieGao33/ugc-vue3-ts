@@ -10,4 +10,5 @@ export interface IContentInfo {
 	likeCount: number
 	commentCount: number
 	favoriteCount: number
+	isMine: boolean
 }

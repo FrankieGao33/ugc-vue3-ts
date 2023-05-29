@@ -4,5 +4,6 @@ export enum OperationType {
 	Like = 'like',
 	Comment = 'comment',
 	Favorite = 'favorite',
-	Share = 'share'
+	Share = 'share',
+	More = 'more'
 }

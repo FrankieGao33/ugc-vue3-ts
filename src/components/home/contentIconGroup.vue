@@ -35,13 +35,21 @@
 		 	   <text class="icon-text">{{props.favoriteCount}}</text>
 		 </view>
 		 <view class="icon-container">
+			 <uni-icons
+				   v-if="props.isMine"
+				   type="more-filled"
+				   size="50"
+				   color="#fff"
+				   @click.stop="emit('clickIcon',OperationType.More, props.id)"
+			 />
 		 	   <uni-icons
+				   v-else
 				   type="redo-filled"
 				   size="50"
 				   color="#fff"
 				   @click.stop="emit('clickIcon',OperationType.Share, props.id)"
 			   />
-		 	   <text class="icon-text">分享</text>
+		 	   <text v-if="!props.isMine" class="icon-text">分享</text>
 		 </view>
 	</view>
   
@@ -60,6 +68,7 @@
 		likeCount: number
 		commentCount: number
 		favoriteCount: number
+		isMine: boolean
 	}
 	const emit = defineEmits<{
 	  (e: 'clickIcon', type: OperationType, id: string): void
