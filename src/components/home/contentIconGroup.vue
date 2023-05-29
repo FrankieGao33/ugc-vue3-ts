@@ -1,7 +1,8 @@
 <template>
 	<view class="icon-button-container">
-		<cover-image :src="props.avatorUrl"
-			 class="avater img" ></cover-image>
+		<image :src="props.avatorUrl"
+			 class="avater img" 
+			 @click.stop="emit('clickIcon',OperationType.Avatar, props.userId)"></image>
 			 <text class="right-follow"
 			 @click.stop="emit('clickIcon',OperationType.Focus, props.userId)">
 		 +
@@ -54,7 +55,7 @@
 	//type Props = Pick<IContentInfo, 'userId' | 'id' | 'avatorUrl' | 'likeCount' | 'commentCount' | 'favoriteCount'>
 	interface Props {
 		id: string
-		contentId: string
+		userId: string
 		avatorUrl?: string
 		likeCount: number
 		commentCount: number
