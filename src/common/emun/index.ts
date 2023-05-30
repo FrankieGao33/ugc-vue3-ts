@@ -7,3 +7,11 @@ export enum OperationType {
 	Share = 'share',
 	More = 'more'
 }
+
+export enum TabsType {
+	Posts = 'posts',
+	Collects = 'collects',
+	Likes = 'likes',
+	Audit = 'audit',
+	Reviewed = 'reviewed'
+}

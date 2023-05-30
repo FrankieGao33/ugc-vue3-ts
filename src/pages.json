@@ -1,57 +1,68 @@
 {
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      // uni-ui 规则如下配置
-      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
-    }
-  },
-  "pages": [
-    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	{
-	  "path": "pages/index/index",
-	  "style": {
-	    "navigationBarTitleText": "uni-apps"
-	  }
-	},
-	{
-		"path": "pages/home/home",
-		"style": {
-		  "navigationBarTitleText": "home"
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uni-ui 规则如下配置
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
 		}
+	},
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "me",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-apps"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "home"
+			}
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "message",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/featured/featured",
+			"style": {
+				"navigationBarTitleText": "featured",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/me/browse",
+			"style": {
+				"navigationBarTitleText": "me"
+			}
+
+		},
+		{
+			"path": "pages/me/review",
+			"style": {
+				"navigationBarTitleText": "me"
+			}
+		
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
 	}
-      ,{
-            "path" : "pages/message/message",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "message",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/me/me",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "me",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/featured/featured",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "featured",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
-  "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
-  }
 }
