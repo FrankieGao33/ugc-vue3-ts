@@ -79,6 +79,7 @@
 		likeCount: 0,
 		commentCount: 0,
 		favoriteCount: 0,
+		isMine: false
 		
 	})
 </script>

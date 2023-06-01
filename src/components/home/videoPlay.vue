@@ -28,6 +28,9 @@
 	const props =defineProps<Props>()
 	const isShowPlayButton = ref<boolean>(false)
 	const instance = getCurrentInstance() as ComponentInternalInstance
+	defineExpose({
+	  isShowPlayButton
+	})
 	function clickVideo(){
 		videoPlay()
 	}

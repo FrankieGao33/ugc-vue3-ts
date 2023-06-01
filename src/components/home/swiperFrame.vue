@@ -1,6 +1,6 @@
 <template>
   <swiper class="swiper" autoplay="false" vertical="true" interval="9990000" @change="changeContent">
-  		<swiper-item class="swiper-item" v-for="(item,index) in contentList" :key="item.id">
+  		<swiper-item class="swiper-item" v-for="(item,index) in newSwiperItems" :key="item.id">
   				<slot v-if="item.type === 'video'" name="video" :videoInfo="item"></slot>
   				<slot v-else name="image" :imageInfo="item"></slot>
   				<view class="content-description">
@@ -15,6 +15,7 @@
 <script setup lang="ts">
 	import { ref, onMounted, ComponentInternalInstance, getCurrentInstance} from 'vue'
 	import { IContentInfo } from '../../common/interface'
+	import { useSwiperList } from './useSwiperList'
 	interface Props {
 		contentList: IContentInfo[],
 		onSwiperContent: () => void
@@ -22,46 +23,47 @@
 	const props = withDefaults(defineProps<Props>(), {
 		contentList: () => []
 	})
+	const { newSwiperItems } = useSwiperList(props.contentList)
 	const instance = getCurrentInstance() as ComponentInternalInstance
 	const current_index = ref<number>(0)
 	onMounted(() => {
-		if(props.contentList[current_index.value].type === 'video'){
-			const video_id = props.contentList[current_index.value].id
+		if(newSwiperItems[current_index.value].type === 'video'){
+			const video_id = newSwiperItems[current_index.value].id
 			const videoCtx = uni.createVideoContext(`video_${video_id}`, instance.proxy.$parent.$refs[video_id]);
 			videoCtx.play();
 		}
 	})
 	
 	function videoPause(){
-		const id = props.contentList[current_index.value].id;
+		const id = newSwiperItems[current_index.value].id;
 		const videoCtx = uni.createVideoContext(`video_${id}`, instance.proxy.$parent.$refs[id]);
 		videoCtx.pause();
 	}
 	function changeContent(e) {
 		// 暂停之前的视频
-		if(props.contentList[current_index.value].type === 'video'){
+		if(newSwiperItems[current_index.value].type === 'video'){
 			videoPause();
 		}
 		// 播放现在的视频
 		current_index.value = e.detail.current;
-		if(props.contentList[current_index.value].type === 'video') {
-			const video_id = props.contentList[current_index.value].id
+		if(newSwiperItems[current_index.value].type === 'video') {
+			const video_id = newSwiperItems[current_index.value].id
 			const videoCtx = uni.createVideoContext(`video_${video_id}`, instance.proxy.$parent.$refs[video_id]);
-			videoCtx.play();
+			if(instance.proxy.$parent.$refs[video_id].isShowPlayButton){
+				videoCtx.pause()
+			}else{
+				videoCtx.play();
+			}
 		}
 				
-		// 判断是否第一条
-		if( e.detail.current == 0 ){
-			console.log('到顶了');
+		// 判断是否第一条或者最后一条
+		if( e.detail.current == 0 || e.detail.current == newSwiperItems.length-1){
 			return false;
 		}
-		
-		// 判断是否最后一条
-		if( e.detail.current == props.contentList.length-1 ){
-			console.log('到底了');
-			return false;
+		if(!newSwiperItems[current_index.value].isWatch){
+			newSwiperItems[current_index.value].isWatch = true
+			props.onSwiperContent()
 		}
-		props.onSwiperContent()
 	}
 </script>
 <style lang="scss">
