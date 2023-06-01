@@ -1,36 +1,15 @@
 <template>
 	<view>
-		<swiper-frame :content-list="list" :on-swiper-content="swiperContent">
-			<template #video="videoProps">
-				<video-play :url="videoProps.videoInfo.videoUrl" :id="videoProps.videoInfo.id" :ref="videoProps.videoInfo.id"/>
-			</template>
-			<template #image="imageProps">
-				<carousel-image :imageList="imageProps.imageInfo.imageUrls"></carousel-image>
-			</template>
-			<template #description="descriptionProps">
-				<content-description :description="descriptionProps.description" :authorName="descriptionProps.userName"></content-description>
-			</template>
-			<template #iconGroup="iconGroupProps">
-				<contentIconGroup
-					:id="iconGroupProps.contentInfo.id"
-					:userId="iconGroupProps.contentInfo.userId"
-					:likeCount="iconGroupProps.contentInfo.likeCount"
-					:commentCount="iconGroupProps.contentInfo.commentCount"
-					:favoriteCount="iconGroupProps.contentInfo.favoriteCount"
-					:isMine="iconGroupProps.contentInfo.isMine"
-					@click-icon="onIconGroupClick"
-				/>
-			</template>
-		</swiper-frame>
+		<ugc-content-swiper 
+			:content-list="list" 
+			:swiper-content="swiperContent" 
+			:icon-group-click="onIconGroupClick"
+		/>
 	</view>
 </template>
 
 <script setup lang="ts">
-	import videoPlay from '@/components/home/videoPlay.vue'
-	import swiperFrame from '@/components/home/swiperFrame.vue'
-	import carouselImage from '@/components/home/carouselImage.vue'
-	import contentDescription from '@/components/home/contentDescription.vue'
-	import contentIconGroup from '@/components/home/contentIconGroup.vue'
+	import ugcContentSwiper from '@/components/home/ugcContentSwiper.vue'
 	import { IContentInfo } from '../../common/interface'
 	import { OperationType } from '../../common/emun'
 	import { ref } from 'vue'
@@ -106,9 +85,11 @@
 		]
 	const list = ref<IContentInfo[]>(mockList)
 	function onIconGroupClick(type: OperationType, id: string) {
+		list.value[0].likeCount ++
 		console.log(type, id)
 	}
 	function swiperContent() {
+		console.log("请求了数据")
 		const item:IContentInfo = {...mockList[1], id: (Math.random() * 1e16).toFixed(), userId: (Math.random() * 1e16).toFixed()}
 		list.value.push(item)
 	}
