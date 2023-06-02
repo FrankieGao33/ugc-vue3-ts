@@ -1,6 +1,10 @@
 <template>
-	<view>
+	<login v-if="!isLoggedin && mustLogin" @login='onLogin'/>
+	<view v-else>
 		<swiper-frame :content-list="contentList" :on-swiper-content="props.swiperContent">
+			<template #usersLine="usersLineProps">
+				<users-line :content-list="contentList" @click-user-icon="onUserIconClick"/>
+			</template>
 			<template #video="videoProps">
 				<video-play :url="videoProps.videoInfo.videoUrl" :id="videoProps.videoInfo.id" :ref="videoProps.videoInfo.id"/>
 			</template>
@@ -26,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+	import usersLine from '@/components/home/usersLine.vue'
 	import videoPlay from '@/components/home/videoPlay.vue'
 	import swiperFrame from '@/components/home/swiperFrame.vue'
 	import carouselImage from '@/components/home/carouselImage.vue'
@@ -33,18 +38,31 @@
 	import contentIconGroup from '@/components/home/contentIconGroup.vue'
 	import { IContentInfo } from '../../common/interface'
 	import { OperationType } from '../../common/emun'
+	import { ref } from 'vue'
 	
 	interface Props {
 		contentList: IContentInfo[],
 		iconGroupClick: (type: OperationType, id: string) => void,
-		swiperContent: () => void
+		swiperContent: () => void,
+		mustLogin: boolean
 	}
 	const props = withDefaults(defineProps<Props>(), {
-		contentList: () => []
+		contentList: () => [],
+		mustLogin: true
 	})
+	
+	const isLoggedin = ref<boolean>(false);
 	
 	function onIconGroupClick(type: OperationType, id: string) {
 		props.iconGroupClick(type, id)
+	}
+	
+	const onLogin = (value: boolean) => {
+		console.log('result of login:', value);
+		isLoggedin.value = value;
+	}
+	const onUserIconClick = (id: string) => {
+		console.log('click icon of user line:', id);
 	}
 	
 </script>

@@ -3,6 +3,7 @@
 		<ugc-content-swiper 
 			:content-list="list" 
 			:swiper-content="swiperContent" 
+			:must-login="false"
 			:icon-group-click="onIconGroupClick"
 		/>
 	</view>
