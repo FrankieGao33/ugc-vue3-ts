@@ -21,3 +21,28 @@ export interface ITabOption {
 	value : TabsType;
 	isShow : boolean;
 }
+
+export interface IMessageOption {
+    id?: string;
+    title: string;
+	description: string;
+    icon?: string;
+    type: string;
+    isShowMore?: boolean;
+}
+
+export interface ISystemMessageOption {
+	id?: string;
+	title: string;
+	datetime: string;
+	description: string;
+}
+
+export interface IAllMessageOption {
+	id?: string;
+	avatar: string;
+	title: string;
+	description: string;
+	image: string;
+	type: string;
+}

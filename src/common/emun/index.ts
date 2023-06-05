@@ -15,3 +15,12 @@ export enum TabsType {
 	Audit = 'audit',
 	Reviewed = 'reviewed'
 }
+
+export enum MessageType {
+    Interaction = 'interaction',
+    System = 'system',
+    All = 'all',
+    CommentIssued = 'commentIssued',
+    CommentReceived = 'commentReceived',
+    LikeAndFavorite = 'likeAndFavorite'
+}
