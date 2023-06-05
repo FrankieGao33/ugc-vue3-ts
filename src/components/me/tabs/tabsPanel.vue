@@ -1,5 +1,5 @@
 <template>
-	<view class="tabs-panel">
+	<view class="tabs-panel" :style="{height:`${props.height}px`}">
 		<scroll-view class="tabs-panel-container" scroll-y="true">
 			<view class="panel-without-data-container" v-if="!props.list.length">
 				<panelWithoutData :type="props.tabType" />
@@ -24,17 +24,18 @@
 	interface Props {
 		type : TabsType;
 		list ?: IContentInfo[];
+		height ?: number;
 		column : number;
 	};
 
 	const props = withDefaults(defineProps<Props>(), {
 		tabType: TabsType.Posts,
 		list: () => [],
-		column: 3
+		column: 3,
+		height: 600
 	});
 
 	function onClickImage() {
-
 		if (props.tabType === TabsType.Audit || props.tabType === TabsType.Reviewed) {
 			uni.navigateTo({
 				url: "/pages/me/review"
@@ -50,10 +51,11 @@
 
 <style lang="scss">
 	.tabs-panel {
-		height: 600rpx;
+		display: flex;
+		position: relative;
+		height: 100%;
 		width: 100%;
 		overflow-y: auto;
-		min-height: 600rpx;
 	}
 
 	.tabs-panel-container {

@@ -236,7 +236,15 @@
 	];
 
 	onMounted(() => {
-		curContentItems.value = mockListForPost;
+		uni.showToast({
+			title: "加载中",
+			icon: 'loading'
+		});
+
+		setTimeout(() => {
+			curContentItems.value = mockListForPost;
+			uni.hideToast();
+		}, 1000);
 	});
 
 
@@ -251,6 +259,7 @@
 </script>
 <style lang="scss">
 	.tabs {
+		position: relative;
 		width: 100%;
 		background-color: white;
 	}
