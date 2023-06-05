@@ -15,3 +15,8 @@ export enum TabsType {
 	Audit = 'audit',
 	Reviewed = 'reviewed'
 }
+
+export enum FileType {
+	Image = 'image',
+	Video = 'xideo',
+}

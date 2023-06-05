@@ -58,6 +58,13 @@
 				"navigationBarTitleText": "me"
 			}
 		
+		},
+		{
+			"path": "pages/creation/creation",
+			"style": {
+				"navigationBarTitleText": "creation"
+			}
+		
 		}
 	],
 	"globalStyle": {
