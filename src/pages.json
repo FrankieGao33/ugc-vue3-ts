@@ -18,7 +18,8 @@
 			"path": "pages/me/me",
 			"style": {
 				"navigationBarTitleText": "me",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
 
 		},
