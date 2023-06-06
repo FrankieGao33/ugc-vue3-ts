@@ -1,18 +1,20 @@
 import { TabsType } from "../emun";
 
 export interface IContentInfo {
-	id: string;
-	userId: string;
-	userName: string;
-	type: 'video' | 'image';
-	imageUrls?: string[];
-	videoUrl?: string;
-	description: string;
-	avatorUrl?: string;
-	likeCount: number;
-	commentCount: number;
-	favoriteCount: number;
-	isMine?: boolean;
+	id : string;
+	userId : string;
+	userName : string;
+	type : 'video' | 'image';
+	imageUrls ?: string[];
+	videoUrl ?: string;
+	description : string;
+	avatorUrl ?: string;
+	likeCount : number;
+	commentCount : number;
+	favoriteCount : number;
+	isMine ?: boolean;
+	isReviewed ?: boolean;
+	isPass ?: boolean;
 	postUrl ?: string;
 }
 

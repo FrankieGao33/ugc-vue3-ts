@@ -7,7 +7,9 @@
 			<view v-else>
 				<uni-grid :showBorder="false" :column="props.column" :highlight="false" :square="false">
 					<uni-grid-item v-for="(item, index) in props.list" :index="index" :key="`post-${index}`">
-						<imageItem :url="item.postUrl" width="240" height="300" @on-click="onClickImage"></imageItem>
+						<imageItem :url="item.postUrl" :isMine="item.isMine" :isReviewed="item.isReviewed"
+							:isPass="item.isPass" :likeCount="item.likeCount || 0" width="240" height="300"
+							@on-click="onClickImage"></imageItem>
 					</uni-grid-item>
 				</uni-grid>
 			</view>
