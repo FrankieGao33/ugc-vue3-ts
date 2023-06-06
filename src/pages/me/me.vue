@@ -3,6 +3,10 @@
 		<userBasicInfo id="basicInfo" :avatarUrl="avatarUrl" :iconSize="iconSize" :isEditable="isEditable"
 			:userName="userName" :backgroundImage="backgroundImage" />
 
+		<view>
+			<Profile :profileData="profileData"></Profile>
+		</view>
+
 		<tabs :items="tabItems">
 			<template #content="contentProps">
 				<tabsPanel id="tabs-panel" :height="tabsPanelHeight" :list="contentProps.list"
@@ -20,6 +24,8 @@
 	import tabs from "@/components/me/tabs/tabs.vue";
 	import tabsPanel from "@/components/me/tabs/tabsPanel.vue";
 	import userBasicInfo from '@/components/me/userBasicInfo/userBasicInfo.vue';
+	
+	import Profile from '@/components/me/profile.vue';
 
 	const tabItems : ITabOption[] = [
 		{ label: "作品", value: TabsType.Posts, isShow: true },
@@ -54,6 +60,28 @@
 	onMounted(() => {
 		calcTabsPanelHeight();
 	});
+	
+	const isOther = false;
+	let profileData = {
+		praise: 110,
+		attention: 36,
+		fans: 63,
+		gender: '女33',
+		location: '陕西 · 渭南',
+		completion: '8%',
+		isMyself: true
+	};
+	if (isOther) {
+		profileData = {
+			praise: 220,
+			attention: 12,
+			fans: 18,
+			gender: '男',
+			location: '北京 · 朝阳',
+			completion: '16%',
+			isMyself: false
+		};
+	}
 </script>
 
 <style lang="scss">
