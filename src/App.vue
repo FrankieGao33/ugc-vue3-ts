@@ -18,4 +18,6 @@
     console.log("App Hide");
   });
 </script>
-<style></style>
+<style>
+	@import "@/static/iconfont.css";
+</style>

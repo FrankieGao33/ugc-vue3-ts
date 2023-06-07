@@ -65,8 +65,31 @@
 				"navigationBarTitleText": "creation"
 			}
 		
+		},
+		{
+			"path" : "pages/me/editProfile/editProfile",
+			"style" :                                                                                    
+			{
+				"navigationBarTitleText": "编辑资料"
+			}
 		}
-	],
+		,{
+			"path" : "pages/me/editProfile/editName/editName",
+			"style" :                                                                                    
+			{
+				"navigationBarTitleText": "修改名字"
+			}
+			
+		}
+	    ,{
+            "path" : "pages/me/editProfile/editIntroduce/editIntroduce",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改简介"
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

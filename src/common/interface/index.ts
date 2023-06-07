@@ -23,3 +23,13 @@ export interface ITabOption {
 	value : TabsType;
 	isShow : boolean;
 }
+
+export interface profileInfo {
+	praise: number
+	attention: number
+	fans: number
+	gender: string
+	location: string
+	completion: string
+	isMyself: boolean
+}
