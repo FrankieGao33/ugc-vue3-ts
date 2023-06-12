@@ -1,5 +1,5 @@
 <template>
-  <swiper class="swiper" autoplay="false" vertical="true" interval="9990000" @change="changeContent">
+  <swiper class="swiper" :current="current_index" autoplay="false" vertical="true" interval="9990000" @change="changeContent">
   		<swiper-item class="swiper-item" v-for="(item,index) in newSwiperItems" :key="item.id">
 				<slot name='usersLine' :contentInfo="item"></slot>
   				<slot v-if="item.type === 'video'" name="video" :videoInfo="item"></slot>
@@ -7,9 +7,9 @@
   				<view class="content-description">
   					<slot name='description' :description="item.description" :userName="item.userName"></slot>
   				</view>
-				<cover-view class="content-icon-group">
+				<view class="content-icon-group">
 					<slot name='iconGroup' :contentInfo="item"></slot>
-				</cover-view>
+				</view>
   		</swiper-item>
   </swiper>
 </template>
@@ -19,6 +19,7 @@
 	import { useSwiperList } from './useSwiperList'
 	interface Props {
 		contentList: IContentInfo[],
+		currentContentId?: string,
 		onSwiperContent: () => void
 	}
 	const props = withDefaults(defineProps<Props>(), {
@@ -26,7 +27,8 @@
 	})
 	const { newSwiperItems } = useSwiperList(props.contentList)
 	const instance = getCurrentInstance() as ComponentInternalInstance
-	const current_index = ref<number>(0)
+	const currentItemIndex = (element: IContentInfo) => element.id === (props.currentContentId || newSwiperItems[0].id)
+	const current_index = ref<number>(newSwiperItems.findIndex(currentItemIndex))
 	onMounted(() => {
 		if(newSwiperItems[current_index.value].type === 'video'){
 			const video_id = newSwiperItems[current_index.value].id

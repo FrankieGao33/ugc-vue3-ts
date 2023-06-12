@@ -24,3 +24,8 @@ export enum MessageType {
     CommentReceived = 'commentReceived',
     LikeAndFavorite = 'likeAndFavorite'
 }
+
+export enum FileType {
+	Image = 'image',
+	Video = 'xideo',
+}
