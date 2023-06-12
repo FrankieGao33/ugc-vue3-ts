@@ -1,6 +1,10 @@
 <template>
-	<view class="bg-layout">
-		<image src="../../../static/timgPQQ8VLR5.jpg"></image>
+	<view class="bg-layout" @click="changeBgImage">
+		<image :src="bgImage"></image>
+		<view class="change-bg">
+			<uni-icons type="camera" size="15" color="#ffffff" class="camera-icon"></uni-icons>
+			<text class="change-text">更换背景</text>
+		</view>
 	</view>
 	<view class="edit-content-layout">
 		<view class="avatar-layout">
@@ -11,7 +15,6 @@
 				:isEditable="isEditable"
 				@changeAvatar="changeAvatar"
 			/>
-			<!-- <image class="avatar-img" src="../../../static/logo.png"></image> -->
 			<view class="change-avatar-info">点击更换头像</view>
 		</view>
 		<view class="edit-content">
@@ -83,10 +86,12 @@
 	const avatarUrl = ref<string>();
 	const size = ref<string>();
 	const isEditable = ref<boolean>();
+	const bgImage = ref<string>();
 	
 	avatarUrl.value = "../../static/logo.png";
 	size.value = "180";
 	isEditable.value = true;
+	bgImage.value = '../../../static/timgPQQ8VLR5.jpg';
 	
 	interface profile {
 		name: string
@@ -108,13 +113,14 @@
 	profileInfo.location = '610113';
 	
 	const changeAvatar = () =>{
-		uni.chooseImage({
+		uni.chooseMedia({
 			count: 6, //默认9
+			mediaType: ['image'],
 			sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 			sourceType: ['album','camera'],   //album 从相册选图，camera 使用相机
 			success: function (res) {
-				console.log(JSON.stringify(res.tempFilePaths)); //拍照图片的路径
-				avatarUrl.value = res.tempFilePaths[0];
+				console.log(JSON.stringify(res.tempFiles[0])); //拍照图片的路径
+				avatarUrl.value = res.tempFiles[0].tempFilePath;
 				//call api
 			}
 		});
@@ -159,6 +165,19 @@
 		const location = profileInfo.location;
 		console.log(location);
 	};
+	const changeBgImage = () => {
+		uni.chooseMedia({
+			count: 6, //默认9
+			mediaType: ['image'],
+			sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+			sourceType: ['album'],   //album 从相册选图，camera 使用相机
+			success (res) {
+				console.log(JSON.stringify(res.tempFiles[0])); //拍照图片的路径
+				bgImage.value = res.tempFiles[0].tempFilePath;
+				//call api
+			}
+		});
+	};
 </script>s
 
 <style lang="scss">
@@ -168,6 +187,26 @@
 		image {
 			width: 100%;
 			background-repeat: no-repeat;
+		}
+		.change-bg {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			color: #ffffff;
+			background-color: #505050;
+			opacity: 0.3;
+			padding: 3rpx 14rpx;
+			border-radius: 30rpx;
+			right: 30rpx;
+			top: 20rpx;
+			.camera-icon {
+				float: left;
+				margin-right: 8rpx;
+			}
+			.change-text {
+				font-size: 20rpx;
+				letter-spacing: 2rpx;
+			}
 		}
 	}
 	.avatar {
