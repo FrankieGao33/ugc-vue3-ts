@@ -5,7 +5,7 @@
 			<text class="save-btn" @click="saveInput">保存</text>
 		</view>
 		<view class="input-layout">
-			<input type="text" @input="changeChars" v-model="name" maxlength="20" placeholder="记得填写名字哦" class="input-content"/>
+			<input type="text" v-model="name" maxlength="20" placeholder="记得填写名字哦" class="input-content"/>
 			<uni-icons type="clear" color="#8f8f8f" size="18" class="clear-btn" @click="clearChars"></uni-icons>
 		</view>
 		<view class="prompt-info">
@@ -16,24 +16,27 @@
 </template>
 
 <script lang="ts" setup>
-	import {ref} from 'vue'
+	import {ref, watch, getCurrentInstance} from 'vue'
 	import { onLoad } from '@dcloudio/uni-app'
 	const name = ref<string>();
 	const typeLength = ref<number>();
+	
+	const _this = getCurrentInstance().ctx;
 	onLoad((params) => {
 		name.value = params.name;
-		typeLength.value = name.value.length;
 	});
 	const clearChars = ()=>{
 		name.value = '';
 	}
-	const changeChars = ()=>{
-		typeLength.value = name.value.length;
-	}
+	watch(name, (newName)=>{
+		typeLength.value = newName.length;
+	});
 	const saveInput = ()=> {
 		//call api
+		const eventChannel = _this.getOpenerEventChannel();
+		eventChannel.emit('getUpdateName', {name: name});
 		uni.navigateBack();
-	}
+	};
 </script>
 
 <style lang="scss">
