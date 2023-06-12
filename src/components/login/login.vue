@@ -35,7 +35,7 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		border: $uni-border-color-red 10rpx solid;
+		border: #fc3b3b 10rpx solid;
 		width: 70%;
 		position: absolute;
 		left: 50%;
@@ -58,7 +58,7 @@
 			margin: 60rpx auto;
 			width: 70%;
 			font-size: 14px;
-			background-color: $uni-button-color-red;
+			background-color: #fc3b3b;
 			color: white;
 		}
 	}

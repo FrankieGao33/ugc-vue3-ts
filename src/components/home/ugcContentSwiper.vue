@@ -1,7 +1,7 @@
 <template>
 	<login v-if="!isLoggedin && mustLogin" @login='onLogin'/>
 	<view v-else>
-		<swiper-frame :content-list="contentList" :on-swiper-content="props.swiperContent">
+		<swiper-frame :content-list="contentList" :currentContentId="currentContentId" :on-swiper-content="props.swiperContent">
 			<template #usersLine="usersLineProps">
 				<users-line :content-list="contentList" @click-user-icon="onUserIconClick"/>
 			</template>
@@ -45,6 +45,7 @@
 		iconGroupClick: (type: OperationType, id: string) => void,
 		swiperContent: () => void,
 		mustLogin: boolean
+		currentContentId?: string
 	}
 	const props = withDefaults(defineProps<Props>(), {
 		contentList: () => [],
