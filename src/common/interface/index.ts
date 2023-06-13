@@ -32,4 +32,5 @@ export interface profileInfo {
 	location: string
 	completion: string
 	isMyself: boolean
+	isFollow: boolean
 }

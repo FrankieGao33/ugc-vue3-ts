@@ -42,9 +42,10 @@
 				<view class="personal-info">
 					<text>{{props.profileData.location}}</text>
 				</view>
-			</view>
+			</view>	
 			<view class="profile-row">
-				<button class="btn-edit-profile"><uni-icons type="plusempty" size="12" class="icon-right"></uni-icons>关注</button>
+				<button v-if="props.profileData.isFollow" class="btn-edit-profile follow-btn _followed">已关注<uni-icons color="#ffffff" type="bottom" size="16" class="down-arrow"></uni-icons></button>
+				<button v-else class="btn-edit-profile follow-btn"><uni-icons color="#ffffff" type="plusempty" size="12" class="icon-right"></uni-icons>关注</button>
 			</view>
 		</template>
 	</view>
@@ -84,8 +85,18 @@
 	.btn-edit-profile {
 		width: 50%;
 		font-size: 30rpx;
-		color: black;
+		color: #000000;
 		background-color: #e5e5e5;
+		&.follow-btn {
+			color: #ffffff;
+			background-color: #ff5b5b;
+		}
+		&._followed {
+			background-color: #666666;
+		}
+		.down-arrow {
+			margin-left: 10rpx;
+		}
 	}
 	.complete-degree {
 		color: #5d5d5d;
