@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-	import { ref } from 'vue';
+	import { ref, watch} from 'vue';
 	
 	const defaultAvatar = "../../static/default-avatar.png";
 
@@ -33,10 +33,13 @@
 	size.value = props.size + "rpx";
 	isEditable.value = props.isEditable;
 	
-	
 	function onChangeAvatar() {
 		emit("changeAvatar")
 	}
+	
+	watch(props, (newUrl)=>{
+		avatorUrl.value = newUrl.url;
+	});
 
 </script>
 

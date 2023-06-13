@@ -10,14 +10,17 @@
 </template>
 
 <script lang="ts" setup>
-	import {ref} from 'vue'
-	import { onLoad } from '@dcloudio/uni-app'
+	import {ref, getCurrentInstance} from 'vue';
+	import { onLoad } from '@dcloudio/uni-app';
+	const _this = getCurrentInstance().ctx;
 	const introduce = ref<string>();
 	onLoad((params) => {
 		introduce.value = params.introduce;
 	});
 	const saveInput = ()=> {
 		//call api
+		const eventChannel = _this.getOpenerEventChannel();
+		eventChannel.emit('getUpdateIntro', {introduce: introduce});
 		uni.navigateBack();
 	}
 </script>
