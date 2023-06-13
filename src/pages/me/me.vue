@@ -62,7 +62,7 @@
 	});
 	
 	const isOther = false;
-	let profileData = {
+	let profileData: object = {
 		praise: 110,
 		attention: 36,
 		fans: 63,
@@ -79,7 +79,8 @@
 			gender: '男',
 			location: '北京 · 朝阳',
 			completion: '16%',
-			isMyself: false
+			isMyself: false,
+			isFollow: false
 		};
 	}
 </script>
