@@ -17,7 +17,7 @@
 		<Countdown></Countdown>
 	</view>
 	<view>
-		<button @click="getOrders()">getOrder</button>
+		<button @click="getOrders">getOrder</button>
 	</view>
 	<view>
 		<button @click="getOrderId()">get One order</button>
