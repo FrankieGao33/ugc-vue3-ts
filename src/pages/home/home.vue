@@ -1,100 +1,141 @@
 <template>
-	<view>
-		<ugc-content-swiper 
-			:content-list="list" 
-			:swiper-content="swiperContent" 
-			:must-login="false"
-			:icon-group-click="onIconGroupClick"
-		/>
-	</view>
+  <view>
+    <ugc-content-swiper
+      :content-list="list"
+      :swiper-content="swiperContent"
+      :must-login="false"
+      :icon-group-click="onIconGroupClick"
+      :currentContentId="curContentId"
+    />
+  </view>
 </template>
 
 <script setup lang="ts">
-	import ugcContentSwiper from '@/components/home/ugcContentSwiper.vue'
-	import { IContentInfo } from '../../common/interface'
-	import { OperationType } from '../../common/emun'
-	import { ref } from 'vue'
-	const mockList:IContentInfo[] = [
-					{
-						id: '022',
-						userId: '1',
-						userName: '@🌹🤔我是作者🌹',
-						type: "image",
-						imageUrls: [
-							`https://picsum.photos/seed/${Math.random()}/500/800`,
-							`https://picsum.photos/seed/${Math.random()}/500/800`,
-							`https://picsum.photos/seed/${Math.random()}/500/800`
-						],
-						likeCount: 12945,
-						commentCount: 583,
-						favoriteCount: 5294,
-						isMine: true,
-						description: "这是一组图片, 一组轮播图片，总共有3张图片😄"
-					},
-					{
-						id: '011',
-						userId: '2',
-						userName: '@🌹🤔我是作者🌹',
-						type: "video",
-						likeCount: 5921,
-						commentCount: 102,
-						favoriteCount: 10,
-						videoUrl: 'https://www.runoob.com/try/demo_source/movie.mp4',
-						isMine: false,
-						description: "这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频"
-					},	
-					{
-						id: '023',
-						userId: '3',
-						userName: '@🌹🤔我是作者🌹',
-						type: "video",
-						likeCount: 43,
-						commentCount: 1,
-						favoriteCount: 0,
-						videoUrl: 'https://web-assets.dcloud.net.cn/unidoc/zh/wap2appvsnative.mp4',
-						isMine: true,
-						description: "这是一个视频，网络上的找的视频🫡😝"
-					},
-					{
-						id: '034',
-						userId: '4',
-						userName: '@🌹🤔我是作者🌹',
-						type: "video",
-						likeCount: 5932,
-						commentCount: 592,
-						favoriteCount: 193,
-						videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-						isMine: true,
-						description: "这是一个视频，网络上的找的视频🫡😝"
-					},
-					{
-						id: '025',
-						userId: '5',
-						userName: '@🌹🤔我是作者🌹',
-						type: "image",
-						likeCount: 942,
-						commentCount: 184,
-						favoriteCount: 43,
-						imageUrls: [
-							`https://picsum.photos/seed/${Math.random()}/500/800`,
-							`https://picsum.photos/seed/${Math.random()}/500/800`,
-							`https://picsum.photos/seed/${Math.random()}/500/800`
-						],
-						isMine: false,
-						description: "这是一组图片, 一组轮播图片，总共有3张图片😄"
-					},
-		]
-	const list = ref<IContentInfo[]>(mockList)
-	function onIconGroupClick(type: OperationType, id: string) {
-		list.value[0].likeCount ++
-		console.log(type, id)
-	}
-	function swiperContent() {
-		console.log("请求了数据")
-		const item:IContentInfo = {...mockList[1], id: (Math.random() * 1e16).toFixed(), userId: (Math.random() * 1e16).toFixed()}
-		list.value.push(item)
-	}
-</script>
-<style lang="scss">
+import ugcContentSwiper from "@/components/home/ugcContentSwiper.vue";
+import { IContentInfo, IListInfo } from "../../common/interface";
+import { OperationType } from "../../common/emun";
+import { ref } from "vue";
+import { store } from "../../store";
+import { GET_CONTENT_LIST } from "../../store/actions";
+import { onLoad } from "@dcloudio/uni-app";
 
-</style>
+const mockList: IContentInfo[] = [
+  {
+    id: "022",
+    userId: "1",
+    userName: "@🌹🤔我是作者🌹",
+    type: "image",
+    imageUrls: [
+      `https://picsum.photos/seed/${Math.random()}/500/800`,
+      `https://picsum.photos/seed/${Math.random()}/500/800`,
+      `https://picsum.photos/seed/${Math.random()}/500/800`,
+    ],
+    likeCount: 12945,
+    commentCount: 583,
+    favoriteCount: 5294,
+    isMine: true,
+    description: "这是一组图片, 一组轮播图片，总共有3张图片😄",
+  },
+  {
+    id: "011",
+    userId: "2",
+    userName: "@🌹🤔我是作者🌹",
+    type: "video",
+    likeCount: 5921,
+    commentCount: 102,
+    favoriteCount: 10,
+    videoUrl: "https://www.runoob.com/try/demo_source/movie.mp4",
+    isMine: false,
+    description:
+      "这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频，这是一个视频",
+  },
+  {
+    id: "023",
+    userId: "3",
+    userName: "@🌹🤔我是作者🌹",
+    type: "video",
+    likeCount: 43,
+    commentCount: 1,
+    favoriteCount: 0,
+    videoUrl: "https://web-assets.dcloud.net.cn/unidoc/zh/wap2appvsnative.mp4",
+    isMine: true,
+    description: "这是一个视频，网络上的找的视频🫡😝",
+  },
+  {
+    id: "034",
+    userId: "4",
+    userName: "@🌹🤔我是作者🌹",
+    type: "video",
+    likeCount: 5932,
+    commentCount: 592,
+    favoriteCount: 193,
+    videoUrl:
+      "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
+    isMine: true,
+    description: "这是一个视频，网络上的找的视频🫡😝",
+  },
+  {
+    id: "025",
+    userId: "5",
+    userName: "@🌹🤔我是作者🌹",
+    type: "image",
+    likeCount: 942,
+    commentCount: 184,
+    favoriteCount: 43,
+    imageUrls: [
+      `https://picsum.photos/seed/${Math.random()}/500/800`,
+      `https://picsum.photos/seed/${Math.random()}/500/800`,
+      `https://picsum.photos/seed/${Math.random()}/500/800`,
+    ],
+    isMine: false,
+    description: "这是一组图片, 一组轮播图片，总共有3张图片😄",
+  },
+];
+const list = ref<IContentInfo[]>(mockList);
+
+let tabType = "";
+let curContentId = ref<string>("");
+let contentListByTabType: IListInfo = null;
+
+onLoad((options?: any) => {
+  console.log("onLoad function is triggered", options);
+
+  tabType = options?.tabType;
+
+  if (tabType) {
+    store.dispatch(GET_CONTENT_LIST, tabType).then((data: IListInfo) => {
+      list.value = data.list;
+      curContentId.value = options?.contentId;
+    });
+  }
+});
+
+function onIconGroupClick(type: OperationType, id: string) {
+  list.value[0].likeCount++;
+  console.log(type, id);
+}
+
+function swiperContent() {
+  if (tabType) {
+    console.log("call swiper content for tabType");
+
+    // if (!contentListByTabType?.isLastPage) {
+    // call next page API to get nextPage data
+    /*store.dispatch(SET_CONTENT_LIST, {list: [],pageNumber:2,isLastPage: true});*/
+    // store.dispatch(GET_CONTENT_LIST, tabType);
+    // }
+    return;
+  }
+
+  console.log("请求了数据");
+
+  const item: IContentInfo = {
+    ...mockList[1],
+    id: (Math.random() * 1e16).toFixed(),
+    userId: (Math.random() * 1e16).toFixed(),
+  };
+
+  list.value.push(item);
+}
+</script>
+<style lang="scss"></style>
