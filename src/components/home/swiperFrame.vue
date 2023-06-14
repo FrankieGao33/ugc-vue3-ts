@@ -14,7 +14,7 @@
   </swiper>
 </template>
 <script setup lang="ts">
-	import { ref, onMounted, ComponentInternalInstance, getCurrentInstance} from 'vue'
+	import { onMounted, ComponentInternalInstance, getCurrentInstance} from 'vue'
 	import { IContentInfo } from '../../common/interface'
 	import { useSwiperList } from './useSwiperList'
 	interface Props {
@@ -25,12 +25,10 @@
 	const props = withDefaults(defineProps<Props>(), {
 		contentList: () => []
 	})
-	const { newSwiperItems } = useSwiperList(props.contentList)
+	const { newSwiperItems, current_index } = useSwiperList(props)
 	const instance = getCurrentInstance() as ComponentInternalInstance
-	const currentItemIndex = (element: IContentInfo) => element.id === (props.currentContentId || newSwiperItems[0].id)
-	const current_index = ref<number>(newSwiperItems.findIndex(currentItemIndex))
 	onMounted(() => {
-		if(newSwiperItems[current_index.value].type === 'video'){
+		if(newSwiperItems[current_index.value]?.type === 'video'){
 			const video_id = newSwiperItems[current_index.value].id
 			const videoCtx = uni.createVideoContext(`video_${video_id}`, instance.proxy.$parent.$refs[video_id]);
 			videoCtx.play();
@@ -43,6 +41,9 @@
 		videoCtx.pause();
 	}
 	function changeContent(e) {
+		if(e.detail.current === current_index.value){
+			return
+		}
 		// 暂停之前的视频
 		if(newSwiperItems[current_index.value].type === 'video'){
 			videoPause();
