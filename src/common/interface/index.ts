@@ -32,4 +32,16 @@ export interface profileInfo {
 	location: string
 	completion: string
 	isMyself: boolean
+	isFollow: boolean
+}
+
+export interface IListInfo {
+	list : IContentInfo[],
+	pageNumber ?: number,
+	isLastPage ?: boolean
+};
+
+export interface IContentList {
+	key : string,
+	listInfo : IListInfo
 }

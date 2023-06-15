@@ -88,10 +88,10 @@
 	const isEditable = ref<boolean>();
 	const bgImage = ref<string>();
 	
-	avatarUrl.value = "../../static/logo.png";
+	avatarUrl.value = "https://pica.zhimg.com/v2-ac4a5884ba09c3aa6b0213528fe008da_r.jpg";
 	size.value = "180";
 	isEditable.value = true;
-	bgImage.value = '../../../static/timgPQQ8VLR5.jpg';
+	bgImage.value = 'https://ts1.cn.mm.bing.net/th/id/R-C.ddbe60882fb529b0252f393577ead646?rik=%2f7YBpw2SPJ9k0Q&riu=http%3a%2f%2fres.dps.cn%2fres%2fbgimg%2f16514%2f28.jpg&ehk=JVlxG8xOcZ7i%2boVLKEEBdrrRYjTNi%2fMaQKcqdHSRh0I%3d&risl=&pid=ImgRaw&r=0';
 	
 	interface profile {
 		name: string
