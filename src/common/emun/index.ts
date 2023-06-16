@@ -5,7 +5,8 @@ export enum OperationType {
 	Comment = 'comment',
 	Favorite = 'favorite',
 	Share = 'share',
-	More = 'more'
+	More = 'more',
+	Delete = 'delete'
 }
 
 export enum TabsType {
