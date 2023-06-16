@@ -7,17 +7,19 @@
       :icon-group-click="onIconGroupClick"
       :currentContentId="curContentId"
     />
+    <share-modal ref="shareModal" @delete="onDelete" />
   </view>
 </template>
 
 <script setup lang="ts">
 import ugcContentSwiper from "@/components/home/ugcContentSwiper.vue";
+import ShareModal from "@/components/share/share.vue";
 import { IContentInfo, IListInfo } from "../../common/interface";
 import { OperationType } from "../../common/emun";
 import { ref } from "vue";
 import { store } from "../../store";
 import { GET_CONTENT_LIST } from "../../store/actions";
-import { onLoad } from "@dcloudio/uni-app";
+import { onLoad, onShareAppMessage, onShareTimeline } from "@dcloudio/uni-app";
 
 const mockList: IContentInfo[] = [
   {
@@ -92,6 +94,7 @@ const mockList: IContentInfo[] = [
   },
 ];
 const list = ref<IContentInfo[]>(mockList);
+const shareModal = ref<InstanceType<typeof ShareModal> | null>(null);
 
 let tabType = "";
 let curContentId = ref<string>("");
@@ -99,7 +102,6 @@ let contentListByTabType: IListInfo = null;
 
 onLoad((options?: any) => {
   console.log("onLoad function is triggered", options);
-
   tabType = options?.tabType;
 
   if (tabType) {
@@ -110,9 +112,35 @@ onLoad((options?: any) => {
   }
 });
 
+onShareAppMessage((options?: Page.ShareAppMessageOption) => {
+  if (options.from === "button") {
+    return {
+      title: "UGC 小程序", //分享的名称
+      path: "/pages/home/home", //页面的路径
+    };
+  }
+});
+
+onShareTimeline((options?: any) => {
+  if (options === "button") {
+    return {
+      title: "UGC 小程序",
+      type: 0,
+      path: "/pages/home/home",
+      imageUrl: `https://picsum.photos/seed/${Math.random()}/500/800`,
+    };
+  }
+});
+
 function onIconGroupClick(type: OperationType, id: string) {
-  list.value[0].likeCount++;
   console.log(type, id);
+  if (type === OperationType.More) {
+    shareModal.value.open();
+  }
+}
+
+function onDelete(type: OperationType) {
+  console.log(type);
 }
 
 function swiperContent() {
