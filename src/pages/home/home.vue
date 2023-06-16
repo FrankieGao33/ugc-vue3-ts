@@ -101,7 +101,7 @@ let curContentId = ref<string>("");
 let contentListByTabType: IListInfo = null;
 
 onLoad((options?: any) => {
-  console.log("onLoad function is triggered", options);
+  console.log("onLoad function is trigg", options);
   tabType = options?.tabType;
 
   if (tabType) {
