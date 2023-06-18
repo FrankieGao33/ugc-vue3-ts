@@ -2,9 +2,9 @@
     <ul v-for="item in messageItems">
 		<li class="container" @click="() => onClickMessage(item.type)" :key="item.id">
 			<view class="left">
-				<uni-icons class="icon" :type="item.icon" size="30"></uni-icons>
+				<uni-icons class="icon" :type="item.icon" size="30" color="red"></uni-icons>
 				<view class="middle">
-					<view class="title">{{ item.title }}</view>
+					<view class="title" style="font-weight: bold;font-size: 13px;">{{ item.title }}</view>
 					<view class="description">{{ item.description }}</view>
 				</view>
 			</view>

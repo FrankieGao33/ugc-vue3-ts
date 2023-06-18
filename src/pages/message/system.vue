@@ -5,7 +5,7 @@
 			<li class="container" :key="item.id">
 				<view class="title">{{ item.title }}</view>
 				<view class="datetime">{{ item.datetime }}</view>
-				<view class="description">{{ item.description }}</view>
+				<view class="description" style="color:gray">{{ item.description }}</view>
 			</li>
 		</ul>
 		</view>
