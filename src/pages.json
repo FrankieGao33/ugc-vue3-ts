@@ -8,34 +8,45 @@
 	},
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/home/home",
-			"style": {
-				"navigationBarTitleText": "home"
-			}
-		},
-		{
-			"path": "pages/me/me",
-			"style": {
-				"navigationBarTitleText": "me",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom"
-			}
-
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-apps"
-			}
-		},
+		// {
+		// 	"path": "pages/home/home",
+		// 	"style": {
+		// 		"navigationBarTitleText": "home"
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/me/me",
+		// 	"style": {
+		// 		"navigationBarTitleText": "me",
+		// 		"enablePullDownRefresh": false,
+		// 		"navigationStyle": "custom"
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/index/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "uni-apps"
+		// 	}
+		// },
 		{
 			"path": "pages/message/message",
 			"style": {
-				"navigationBarTitleText": "message",
+				"navigationBarTitleText": "消息",
 				"enablePullDownRefresh": false
 			}
-
+		},
+		{
+			"path": "pages/message/interaction",
+			"style": {
+				"navigationBarTitleText": "全部消息",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/message/system",
+			"style": {
+				"navigationBarTitleText": "系统通知"
+			}
 		},
 		{
 			"path": "pages/featured/featured",
@@ -43,51 +54,43 @@
 				"navigationBarTitleText": "featured",
 				"enablePullDownRefresh": false
 			}
-
 		},
 		{
 			"path": "pages/me/browse",
 			"style": {
 				"navigationBarTitleText": "me"
 			}
-
 		},
 		{
 			"path": "pages/me/review",
 			"style": {
 				"navigationBarTitleText": "me"
 			}
-		
 		},
 		{
 			"path": "pages/creation/creation",
 			"style": {
 				"navigationBarTitleText": "creation"
 			}
-		
 		},
 		{
 			"path" : "pages/me/editProfile/editProfile",
-			"style" :                                                                                    
+			"style":
 			{
 				"navigationBarTitleText": "编辑资料"
 			}
-		}
-		,{
+		},
+        {
 			"path" : "pages/me/editProfile/editName/editName",
-			"style" :                                                                                    
-			{
+			"style": {
 				"navigationBarTitleText": "修改名字"
 			}
-			
-		}
-	    ,{
+        },
+        {
             "path" : "pages/me/editProfile/editIntroduce/editIntroduce",
-            "style" :                                                                                    
-            {
+            "style": {
                 "navigationBarTitleText": "修改简介"
-            }
-            
+            } 
         }
     ],
 	"globalStyle": {

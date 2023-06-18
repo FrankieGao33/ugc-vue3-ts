@@ -17,6 +17,15 @@ export enum TabsType {
 	Reviewed = 'reviewed'
 }
 
+export enum MessageType {
+    Interaction = 'interaction',
+    System = 'system',
+    All = 'all',
+    CommentIssued = 'commentIssued',
+    CommentReceived = 'commentReceived',
+    LikeAndFavorite = 'likeAndFavorite'
+}
+
 export enum FileType {
 	Image = 'image',
 	Video = 'xideo',
