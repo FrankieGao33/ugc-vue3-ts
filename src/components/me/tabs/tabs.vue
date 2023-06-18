@@ -473,7 +473,7 @@ const onClickTab = async (selectedTab: ITabOption, index: number) => {
 
     store.dispatch(SET_CONTENT_LIST, {
       key: selectedTab.value,
-      listInfo: curContentItems.value,
+      listInfo: curContentItems,
     });
   }
 };

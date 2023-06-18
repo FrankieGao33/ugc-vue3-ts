@@ -29,7 +29,7 @@ export const mutations = {
 				};
 			}
 		} else {
-			state.list[key] = { ...listInfo };
+			state.list[key] = listInfo;
 		}
 	}
 }
