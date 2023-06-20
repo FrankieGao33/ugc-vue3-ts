@@ -70,7 +70,6 @@ export interface IContentList {
 	key : string,
 	listInfo : IListInfo
 }
-}
 
 export interface FileInfo {
 	tempFilePatt:string
