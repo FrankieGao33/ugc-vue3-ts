@@ -5,7 +5,8 @@ export enum OperationType {
 	Comment = 'comment',
 	Favorite = 'favorite',
 	Share = 'share',
-	More = 'more'
+	More = 'more',
+	Delete = 'delete'
 }
 
 export enum TabsType {
@@ -14,6 +15,15 @@ export enum TabsType {
 	Likes = 'likes',
 	Audit = 'audit',
 	Reviewed = 'reviewed'
+}
+
+export enum MessageType {
+    Interaction = 'interaction',
+    System = 'system',
+    All = 'all',
+    CommentIssued = 'commentIssued',
+    CommentReceived = 'commentReceived',
+    LikeAndFavorite = 'likeAndFavorite'
 }
 
 export enum FileType {
