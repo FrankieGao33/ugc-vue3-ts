@@ -2,15 +2,8 @@
 <view class="tab-bar">
   <view class="tab-bar-border"></view>
   <view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
-  
     <view wx:if="{{!item.isIcon}}" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
-	
-	<icon
-	wx:else
-	 type="success"
-	 size="20"
-	 bindTap="selectAlbum"
-	/>
+	<image wx:else src="{{item.iconPath}}"></image>
   </view>
   
 </view>

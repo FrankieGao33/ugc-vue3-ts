@@ -14,7 +14,8 @@ Component({
       },
       {
         isIcon: true,
-        pagePath: "pages/creation/creation",
+        iconPath: "../static/creat_2.png",
+		pagePath: "pages/creation/creation",
       },
       {
         text: "消息",
@@ -22,7 +23,7 @@ Component({
       },
       {
         text: "我的",
-        pagePath: "pages/my/my",
+        pagePath: "pages/me/me",
       },
     ],
   },
@@ -39,11 +40,12 @@ Component({
       const data = e.currentTarget.dataset;
       console.log("data", data);
       const url = data.path;
-      wx.switchTab({ url: `/${url}` });
+      if (data.index === 2) {
+        wx.reLaunch({ url: `/${url}` });
+      } else {
+        wx.switchTab({ url: `/${url}` });
+      }
       wx.setStorageSync("tabIndex", data.index);
-      // if(data.index===2){
-      //  this.selectAlbum()
-      // }
     },
     selectAlbum() {
       wx.showActionSheet({
