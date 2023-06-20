@@ -8,26 +8,26 @@
 	},
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		// {
-		// 	"path": "pages/home/home",
-		// 	"style": {
-		// 		"navigationBarTitleText": "home"
-		// 	}
-		// },
-		// {
-		// 	"path": "pages/me/me",
-		// 	"style": {
-		// 		"navigationBarTitleText": "me",
-		// 		"enablePullDownRefresh": false,
-		// 		"navigationStyle": "custom"
-		// 	}
-		// },
-		// {
-		// 	"path": "pages/index/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "uni-apps"
-		// 	}
-		// },
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "home"
+			}
+		},
+		{
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "me",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-apps"
+			}
+		},
 		{
 			"path": "pages/message/message",
 			"style": {
@@ -98,5 +98,29 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"custom": true,
+		"list": [
+		{
+			"text": "首页",
+			"pagePath": "pages/home/home"
+		},
+		{
+			"text": "精选",
+			"pagePath": "pages/featured/featured"
+		},
+		{
+			"text": "创作",
+			"pagePath": "pages/creation/creation"
+		},
+		{
+			"text": "消息",
+			"pagePath": "pages/message/message"
+		},
+		{
+			"text": "我的",
+			"pagePath": "pages/me/me"
+		}]
 	}
 }

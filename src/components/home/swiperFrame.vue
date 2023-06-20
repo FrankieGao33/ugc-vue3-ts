@@ -98,7 +98,7 @@ function changeContent(e) {
 <style lang="scss">
 .swiper {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 40px);
   position: fixed;
   top: 0;
   left: 0;
