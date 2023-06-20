@@ -70,3 +70,21 @@ export interface IContentList {
 	key : string,
 	listInfo : IListInfo
 }
+
+export interface FileInfo {
+	tempFilePatt:string
+	siz:number	
+	duration?:number
+	height?:number
+	width?:number
+	thumbTempFilePath?:string
+	fileType:string
+}
+
+export interface DragFileInfo{
+	content:FileInfo,
+	index:number,
+	oindex:number,
+	id:string,
+	[field:string]:unknown
+}
