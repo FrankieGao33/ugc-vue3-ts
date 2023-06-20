@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { dragFileInfo, fileInfo } from "../../common/interface";
+import { DragFileInfo, FileInfo } from "../../common/interface";
 import { useAction } from "./useAction";
 const dragRef = ref(null);
 const addSelectedFiles = (list) => {
