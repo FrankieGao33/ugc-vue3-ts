@@ -1,7 +1,7 @@
 <template>
 	<swiper class="image-carouse" autoplay interval="3000" circular>
 		<swiper-item v-for="(item,index) in imageList" :key="index">
-			<image class="image-item" mode="aspectFit" lazy-load :src="item"></image>
+			<image class="image-item" mode="widthFix" lazy-load :src="item"></image>
 		</swiper-item>
 	</swiper>
 </template>

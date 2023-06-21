@@ -21,7 +21,7 @@ onHide(() => {
 <style>
 @import "@/static/iconfont.css";
 .global-page {
-  height: 100vh - 40px;
+  height: calc(100vh - 40px);
   overflow-y: auto;
   overflow-x: hidden;
 }

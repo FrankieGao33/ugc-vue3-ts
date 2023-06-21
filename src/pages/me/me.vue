@@ -1,5 +1,5 @@
 <template>
-  <view id="me-page" class="me-page">
+  <view id="me-page" class="global-page">
     <userBasicInfo
       id="basicInfo"
       :avatarUrl="avatarUrl"
