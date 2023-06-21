@@ -3,7 +3,7 @@
     <scroll-view
       class="tabs-panel-container"
       scroll-y="true"
-      @scrolltolower="onScrollToLower"
+      @scrolltolower="props?.scrollToLower"
     >
       <view
         class="panel-without-data-container"
@@ -69,18 +69,13 @@ const onClickImage = (id: string) => {
   console.log("id:", id);
   if (props.tabType === TabsType.Audit || props.tabType === TabsType.Reviewed) {
     uni.navigateTo({
-      url: "/pages/me/review",
+      url: `/pages/me/review?tabType=${props.tabType}&contentId=${id}`,
     });
   } else {
     uni.navigateTo({
-      url: `/pages/home/home?tabType=${props.tabType}&contentId=${id}`,
+      url: `/pages/me/browse?tabType=${props.tabType}&contentId=${id}`,
     });
   }
-};
-
-const onScrollToLower = () => {
-  console.log(`onScrollToLower`, props.isLoading);
-  props?.scrollToLower?.();
 };
 </script>
 
