@@ -5,7 +5,6 @@
       :swiper-content="swiperContent"
       :must-login="false"
       :icon-group-click="onIconGroupClick"
-      :currentContentId="curContentId"
     />
     <share-modal ref="shareModal" @delete="onDelete" />
   </view>
@@ -14,12 +13,10 @@
 <script setup lang="ts">
 import ugcContentSwiper from "@/components/home/ugcContentSwiper.vue";
 import ShareModal from "@/components/share/share.vue";
-import { IContentInfo, IListInfo } from "../../common/interface";
+import { IContentInfo } from "../../common/interface";
 import { OperationType } from "../../common/emun";
 import { ref } from "vue";
-import { store } from "../../store";
-import { GET_CONTENT_LIST } from "../../store/actions";
-import { onLoad, onShareAppMessage, onShareTimeline } from "@dcloudio/uni-app";
+import { onShareAppMessage, onShareTimeline } from "@dcloudio/uni-app";
 
 const mockList: IContentInfo[] = [
   {
@@ -96,22 +93,6 @@ const mockList: IContentInfo[] = [
 const list = ref<IContentInfo[]>(mockList);
 const shareModal = ref<InstanceType<typeof ShareModal> | null>(null);
 
-let tabType = "";
-let curContentId = ref<string>("");
-let contentListByTabType: IListInfo = null;
-
-onLoad((options?: any) => {
-  console.log("onLoad function is triggered", options);
-  tabType = options?.tabType;
-
-  if (tabType) {
-    store.dispatch(GET_CONTENT_LIST, tabType).then((data: IListInfo) => {
-      list.value = data.list;
-      curContentId.value = options?.contentId;
-    });
-  }
-});
-
 onShareAppMessage((options?: Page.ShareAppMessageOption) => {
   if (options.from === "button") {
     return {
@@ -144,17 +125,6 @@ function onDelete(type: OperationType) {
 }
 
 function swiperContent() {
-  if (tabType) {
-    console.log("call swiper content for tabType");
-
-    // if (!contentListByTabType?.isLastPage) {
-    // call next page API to get nextPage data
-    /*store.dispatch(SET_CONTENT_LIST, {list: [],pageNumber:2,isLastPage: true});*/
-    // store.dispatch(GET_CONTENT_LIST, tabType);
-    // }
-    return;
-  }
-
   console.log("请求了数据");
 
   const item: IContentInfo = {

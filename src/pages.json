@@ -11,13 +11,13 @@
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "home"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
 			"path": "pages/me/me",
 			"style": {
-				"navigationBarTitleText": "me",
+				"navigationBarTitleText": "我",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
@@ -51,26 +51,26 @@
 		{
 			"path": "pages/featured/featured",
 			"style": {
-				"navigationBarTitleText": "featured",
+				"navigationBarTitleText": "精选",
 				"enablePullDownRefresh": false
 			}
 		},
 		{
 			"path": "pages/me/browse",
 			"style": {
-				"navigationBarTitleText": "me"
+				"navigationBarTitleText": "我"
 			}
 		},
 		{
 			"path": "pages/me/review",
 			"style": {
-				"navigationBarTitleText": "me"
+				"navigationBarTitleText": "我"
 			}
 		},
 		{
 			"path": "pages/creation/creation",
 			"style": {
-				"navigationBarTitleText": "creation"
+				"navigationBarTitleText": "创作"
 			}
 		},
 		{
