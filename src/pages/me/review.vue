@@ -7,6 +7,7 @@
         :must-login="false"
         :icon-group-click="onIconGroupClick"
         :currentContentId="currentContentId"
+        :showTabBar="false"
       />
     </view>
     <view class="buttons" v-if="tabType === TabsType.Audit">
