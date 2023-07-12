@@ -14,7 +14,8 @@
     <tabs id="tabs" :items="tabItems">
       <template #content="contentProps">
         <tabsPanel
-          id="tabs-panel"
+          id=" tabs-panel"
+          class="tabs-panel"
           :height="tabsPanelHeight"
           :list="contentProps.list"
           :tabType="contentProps.tabType"
@@ -98,8 +99,9 @@ function calcTabsPanelHeight() {
         dataArr.find((data) => data.id === "tabs-panel")?.height || 0;
       const tabsContainerHeight = tabsHeight - prevTabsPanelHeight;
 
+      // We still need to minus 40 for the global tabs bar
       tabsPanelHeight.value =
-        windowHeight - menuButtonHeight - tabsContainerHeight - 20;
+        windowHeight - menuButtonHeight - tabsContainerHeight - 40 - 20;
     })
     .exec();
 }
@@ -112,5 +114,10 @@ onMounted(() => {
 <style lang="scss">
 .me-page {
   height: 100%;
+}
+
+.tabs-panel {
+  position: absolute;
+  width: 100%;
 }
 </style>

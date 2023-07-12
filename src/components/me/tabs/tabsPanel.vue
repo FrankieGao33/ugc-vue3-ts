@@ -2,8 +2,9 @@
   <view class="tabs-panel" :style="{ height: `${props.height}px` }">
     <scroll-view
       class="tabs-panel-container"
-      scroll-y="true"
-      @scrolltolower="props?.scrollToLower"
+      scroll-y
+      lower-threshold="10"
+      @scrolltolower="onScrollToLower()"
     >
       <view
         class="panel-without-data-container"
@@ -40,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { TabsType } from "../../../common/emun";
 import { IContentInfo } from "../../../common/interface";
 import panelWithoutData from "@/components/me/tabs/panelWithoutData.vue";
@@ -77,20 +78,23 @@ const onClickImage = (id: string) => {
     });
   }
 };
+
+const onScrollToLower = () => {
+  props?.scrollToLower();
+};
 </script>
 
 <style lang="scss">
 .tabs-panel {
   display: flex;
-  position: relative;
   height: 100%;
   width: 100%;
   overflow-y: auto;
-  padding: 20rpx 0;
+  padding: 20rpx 0 0;
 }
 
 .tabs-panel-container {
-  height: 100%;
+  height: 99%;
   width: 100%;
 }
 

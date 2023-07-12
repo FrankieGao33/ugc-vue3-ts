@@ -6,6 +6,7 @@
     vertical="true"
     interval="9990000"
     @change="changeContent"
+    :class="{ hideTabBar: !props.showTabBar }"
   >
     <swiper-item
       class="swiper-item"
@@ -37,9 +38,11 @@ interface Props {
   contentList: IContentInfo[];
   currentContentId?: string;
   onSwiperContent: () => void;
+  showTabBar?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   contentList: () => [],
+  showTabBar: true,
 });
 const { newSwiperItems, current_index } = useSwiperList(props);
 const instance = getCurrentInstance() as ComponentInternalInstance;
@@ -102,17 +105,21 @@ function changeContent(e) {
   position: fixed;
   top: 0;
   left: 0;
+
   .swiper-item {
     background-color: black;
+
     .content-video {
       position: absolute;
     }
+
     .content-description {
       position: absolute;
       color: white;
       top: 85%;
       padding: 0 30upx;
     }
+
     .content-icon-group {
       position: absolute;
       bottom: 150upx;
@@ -121,16 +128,23 @@ function changeContent(e) {
     }
   }
 }
+
+.hideTabBar {
+  height: 100vh;
+}
+
 .animationDom {
   z-index: -1;
   height: 0;
   width: 0;
   animation: change infinite 2s;
 }
+
 @keyframes change {
   from {
     width: 0;
   }
+
   to {
     width: 1rpx;
   }

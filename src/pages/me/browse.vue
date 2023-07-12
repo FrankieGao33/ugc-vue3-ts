@@ -1,11 +1,12 @@
 <template>
-  <view>
+  <view class="browser">
     <ugc-content-swiper
       :content-list="list"
       :swiper-content="swiperContent"
       :must-login="false"
       :icon-group-click="onIconGroupClick"
       :currentContentId="curContentId"
+      :showTabBar="false"
     />
     <share-modal ref="shareModal" @delete="onDelete" />
   </view>
@@ -85,14 +86,18 @@ function swiperContent() {
 
   console.log("请求了数据");
   /*
-		const item: IContentInfo = {
-		  ...mockList[1],
-		  id: (Math.random() * 1e16).toFixed(),
-		  userId: (Math.random() * 1e16).toFixed(),
-		};
-	  
-		list.value.push(item);
-		*/
+					const item: IContentInfo = {
+					  ...mockList[1],
+					  id: (Math.random() * 1e16).toFixed(),
+					  userId: (Math.random() * 1e16).toFixed(),
+					};
+				  
+					list.value.push(item);
+					*/
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.browser {
+  height: 100vh;
+}
+</style>

@@ -5,6 +5,7 @@
       :content-list="contentList"
       :currentContentId="currentContentId"
       :on-swiper-content="props.swiperContent"
+      :show-tab-bar="props.showTabBar"
     >
       <template #usersLine="usersLineProps">
         <users-line
@@ -62,10 +63,12 @@ interface Props {
   swiperContent: () => void;
   mustLogin: boolean;
   currentContentId?: string;
+  showTabBar?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   contentList: () => [],
   mustLogin: true,
+  showTabBar: true,
 });
 
 const isLoggedin = ref<boolean>(false);
